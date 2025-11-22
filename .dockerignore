@@ -1,0 +1,10 @@
+.git
+node_modules
+vendor
+*.rar
+storage
+*.log
+.env
+.DS_Store
+.idea
+.vscode
