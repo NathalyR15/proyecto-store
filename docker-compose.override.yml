@@ -1,0 +1,53 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: ./Proyecto/Backend/back
+      dockerfile: Dockerfile
+    container_name: store_app
+    depends_on:
+      - db
+    volumes:
+      - ./Proyecto/Backend/back:/var/www/html
+    working_dir: /var/www/html
+    environment:
+      APP_ENV: local
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: storedb
+      DB_USERNAME: appuser
+      DB_PASSWORD: apassword
+    # php-fpm escucha en 9000 dentro del contenedor app
+
+  db:
+    image: mysql:8.0
+    container_name: store_db
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: storedb
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apassword
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+
+  nginx:
+    image: nginx:stable
+    container_name: store_nginx
+    depends_on:
+      - app
+    volumes:
+      - ./Proyecto/Backend/back:/var/www/html:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    ports:
+      - "8080:80"
+    networks:
+      - default
+
+volumes:
+  db_data:
+
+networks:
+  default:
