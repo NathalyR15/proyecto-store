@@ -28,20 +28,19 @@ services:
     depends_on:
       - db
     volumes:
-      # si quieres persistencia o logs: ajusta aquí; opcionalmente no montar código en prod
+      # solo volumen para storage (archivos subidos por usuarios)
       - app_storage:/var/www/html/storage
     restart: unless-stopped
 
   backend_nginx:
     image: nginx:stable-alpine
-    container_name: store_nginx # backend nginx (sirve laravel + storage)
+    container_name: store_nginx
     depends_on:
       - app
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro  # copiar tu default.conf (backend)
-      - ./Proyecto/Backend/back:/var/www/html:ro  # opcional: si quieres montar para configs
+    # en producción no montamos el código del repo; si necesitas custom nginx conf,
+    # crea una config dentro de la imagen o usa Dokploy "Files" para inyectarla.
     ports:
-      - "8080:80"
+      - "8080:80"   # backend expuesto en 8080 del host
     restart: unless-stopped
 
   frontend:
@@ -50,7 +49,7 @@ services:
     depends_on:
       - backend_nginx
     ports:
-      - "80:80"   # expone frontend en el puerto 80 del host
+      - "80:80"   # frontend expone 80 del host (sitio principal)
     restart: unless-stopped
 
 volumes:
