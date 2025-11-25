@@ -28,7 +28,6 @@ services:
     depends_on:
       - db
     volumes:
-      # solo volumen para storage (archivos subidos por usuarios)
       - app_storage:/var/www/html/storage
     restart: unless-stopped
 
@@ -37,10 +36,8 @@ services:
     container_name: store_nginx
     depends_on:
       - app
-    # en producción no montamos el código del repo; si necesitas custom nginx conf,
-    # crea una config dentro de la imagen o usa Dokploy "Files" para inyectarla.
-    ports:
-      - "8080:80"   # backend expuesto en 8080 del host
+    # NO exponer puertos en el host: backend accesible solo internamente
+    # Si necesitas pruebas directas, puedes mapear a otro puerto (ej. "8081:80")
     restart: unless-stopped
 
   frontend:
@@ -49,7 +46,7 @@ services:
     depends_on:
       - backend_nginx
     ports:
-      - "8080:80"   # frontend expone 80 del host (sitio principal)
+      - "8080:80"   # expone la app al host en 8080 (traefik ya usa 80/443)
     restart: unless-stopped
 
 volumes:
