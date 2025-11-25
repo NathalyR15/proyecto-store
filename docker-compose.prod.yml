@@ -51,6 +51,11 @@ services:
     restart: unless-stopped
 
   frontend:
+    build:
+      context: ./Proyecto/Frontend/frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE: "https://api.storeproyect.shop/api"
     image: nathalyr15/proyecto-store-frontend:latest
     container_name: store_frontend
     depends_on:
