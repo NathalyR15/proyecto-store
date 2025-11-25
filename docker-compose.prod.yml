@@ -43,7 +43,7 @@ services:
       - "traefik.http.routers.store_nginx.rule=Host(`api.storeproyect.shop`)"
       - "traefik.http.routers.store_nginx.entrypoints=websecure"
       - "traefik.http.routers.store_nginx.tls=true"
-      - "traefik.http.routers.store_nginx.tls.certresolver=le"
+      - "traefik.http.routers.store_nginx.tls.certresolver=letsencrypt"   # <- AHORA
       - "traefik.http.services.store_nginx.loadbalancer.server.port=80"
     restart: unless-stopped
 
