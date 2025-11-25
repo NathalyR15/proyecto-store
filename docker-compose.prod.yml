@@ -38,12 +38,12 @@ services:
       - app
     expose:
       - "80"
-    # Labels para Traefik - rutea api por api.storeproyect.shop (ejemplo)
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.store_nginx.rule=Host(`api.storeproyect.shop`)"
       - "traefik.http.routers.store_nginx.entrypoints=websecure"
       - "traefik.http.routers.store_nginx.tls=true"
+      - "traefik.http.routers.store_nginx.tls.certresolver=le"
       - "traefik.http.services.store_nginx.loadbalancer.server.port=80"
     restart: unless-stopped
 
@@ -59,6 +59,7 @@ services:
       - "traefik.http.routers.store_frontend.rule=Host(`storeproyect.shop`)"
       - "traefik.http.routers.store_frontend.entrypoints=websecure"
       - "traefik.http.routers.store_frontend.tls=true"
+      - "traefik.http.routers.store_frontend.tls.certresolver=le"
       - "traefik.http.services.store_frontend.loadbalancer.server.port=80"
     restart: unless-stopped
 
