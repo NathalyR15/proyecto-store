@@ -4,7 +4,7 @@ import axios from 'axios';
 // Si en tu .env pones VITE_API_BASE incluyendo "/api", por ejemplo:
 // VITE_API_BASE=http://127.0.0.1:8080/api
 // entonces las llamadas serán: api.get('/productos') -> http://127.0.0.1:8080/api/productos
-const baseURL = import.meta.env.VITE_API_BASE || 'http://127.0.0.1:8080/api';
+const baseURL = import.meta.env.VITE_API_BASE || 'https://api.storeproyect.shop/api';
 
 const api = axios.create({
   baseURL,
