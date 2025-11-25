@@ -49,7 +49,7 @@ services:
     depends_on:
       - backend_nginx
     ports:
-      - "80:80"   # frontend expone 80 del host (sitio principal)
+      - "8080:80"   # frontend expone 80 del host (sitio principal)
     restart: unless-stopped
 
 volumes:
