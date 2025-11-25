@@ -36,8 +36,15 @@ services:
     container_name: store_nginx
     depends_on:
       - app
-    # NO exponer puertos en el host: backend accesible solo internamente
-    # Si necesitas pruebas directas, puedes mapear a otro puerto (ej. "8081:80")
+    expose:
+      - "80"
+    # Labels para Traefik - rutea api por api.storeproyect.shop (ejemplo)
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.store_nginx.rule=Host(`api.storeproyect.shop`)"
+      - "traefik.http.routers.store_nginx.entrypoints=websecure"
+      - "traefik.http.routers.store_nginx.tls=true"
+      - "traefik.http.services.store_nginx.loadbalancer.server.port=80"
     restart: unless-stopped
 
   frontend:
@@ -45,8 +52,14 @@ services:
     container_name: store_frontend
     depends_on:
       - backend_nginx
-    ports:
-      - "8080:80"   # expone la app al host en 8080 (traefik ya usa 80/443)
+    expose:
+      - "80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.store_frontend.rule=Host(`storeproyect.shop`)"
+      - "traefik.http.routers.store_frontend.entrypoints=websecure"
+      - "traefik.http.routers.store_frontend.tls=true"
+      - "traefik.http.services.store_frontend.loadbalancer.server.port=80"
     restart: unless-stopped
 
 volumes:
