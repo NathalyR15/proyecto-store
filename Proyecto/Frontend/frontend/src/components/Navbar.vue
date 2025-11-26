@@ -5,9 +5,9 @@
       <div class="brand"><router-link to="/productos">Store Online</router-link></div>
 
       <div class="links">
-        <router-link to="/productos">Al</router-link>
-        <router-link to="/sucursales">Yair le gusta</router-link>
-        <router-link to="/cotizaciones">ELPENE</router-link>
+        <router-link to="/productos">Productos</router-link>
+        <router-link to="/sucursales">Sucursales</router-link>
+        <router-link to="/cotizaciones">Cotización</router-link>
 
         <div class="spacer"></div>
 
