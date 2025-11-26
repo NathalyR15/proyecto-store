@@ -14,11 +14,14 @@ return [
 
     // Para desarrollo: puedes permitir localhost:5174 y 127.0.0.1:5174
     'allowed_origins' => [
+        'https://storeproyect.shop',
+        'https://api.storeproyect.shop',
         'http://localhost:5173',
         'http://127.0.0.1:5173',
         'http://localhost:5174',
         'http://127.0.0.1:5174',
     ],
+    
 
     // Si en producción usarás otro dominio, añádelo aquí (ej: https://mi-dominio.com)
     'allowed_origins_patterns' => [],
