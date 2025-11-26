@@ -17,6 +17,7 @@ services:
     image: nathalyr15/proyecto-store-app:latest
     container_name: store_app
     environment:
+      APP_KEY: "base64:j3kBTPOsPSLlR0LRcpnabbdwRYLmrRwvuu1A+cF6fCI="
       DB_CONNECTION: mysql
       DB_HOST: db
       DB_PORT: 3306
