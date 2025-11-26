@@ -5,7 +5,7 @@
       <div class="brand"><router-link to="/productos">Store Online</router-link></div>
 
       <div class="links">
-        <router-link to="/productos">INVENTARIOOOOOO</router-link>
+        <router-link to="/productos">Productos</router-link>
         <router-link to="/sucursales">Sucursales</router-link>
         <router-link to="/cotizaciones">Cotización</router-link>
 
