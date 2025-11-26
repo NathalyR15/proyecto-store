@@ -31,5 +31,5 @@ return [
     // Si tu frontend envía cookies/autenticación, cambia a true y configura correctamente
     'exposed_headers' => [],
     'max_age' => 0,
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 ];
