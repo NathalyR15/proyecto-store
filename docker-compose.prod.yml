@@ -49,6 +49,9 @@ services:
       - "traefik.http.routers.store_nginx.tls.certresolver=letsencrypt"   # <- AHORA
       - "traefik.http.services.store_nginx.loadbalancer.server.port=80"
     restart: unless-stopped
+    networks:
+      - web_compose_default
+      - dokploy
 
   frontend:
     build:
@@ -72,5 +75,13 @@ services:
     restart: unless-stopped
 
 volumes:
+networks:
+  web_compose_default:
+    external: true
+    name: storeshop-prod-dotzcn_default
+
+  dokploy:
+    external: true
+    name: dokploy-network
   db_data:
   app_storage:
