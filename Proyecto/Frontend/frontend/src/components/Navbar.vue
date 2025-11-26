@@ -2,7 +2,9 @@
 <template>
   <nav class="navbar">
     <div class="container">
-      <div class="brand"><router-link to="/productos">Store de Nathaly</router-link></div>
+      <div class="brand"><router-link to="/productos">HOLAAAAA
+        
+      </router-link></div>
 
       <div class="links">
         <router-link to="/productos">Productos</router-link>
